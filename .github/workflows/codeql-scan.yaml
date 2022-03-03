@@ -1,0 +1,29 @@
+
+name: "Code Scanning - Action"
+
+on: [push]
+
+jobs:
+  CodeQL-Build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        # Override language selection by uncommenting this and choosing your languages
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+      - name: list
+        run: ls -ltr
