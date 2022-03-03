@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - run: pip install requests
       - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement_name app1 --user admin --product_name producti-1 --file report.json --scanner "Trivy Scan"
    
       
