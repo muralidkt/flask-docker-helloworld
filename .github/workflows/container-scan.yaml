@@ -1,5 +1,4 @@
 name: "Container-scan - Trivy"
-
 on: [push]
 jobs:
   build:
