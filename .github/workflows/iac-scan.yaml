@@ -1,20 +1,33 @@
-name: "Container-scan - Trivy"
-on: [push]
+name: tfsec
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  tfsec:
+    name: tfsec sarif report
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+
+      - name: tfsec
+        uses: tfsec/tfsec-sarif-action@main
+        with:
+          sarif_file: tfsec.sarif         
+
+      - name: Downaload the scripts
+        run: |
+          curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
+          curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
+        
       - name: Upload the result
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
       - run: pip install requests
-      - run: pip install checkov
-      - run: checkov --directory . -o json
-      - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file results_json.json --scanner "Checkov Scan"
+      - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file tfsec.sarif  --scanner "SARIF"
    
       
