@@ -16,4 +16,3 @@ jobs:
           framework: terraform 
           output_format: json 
           download_external_modules: true 
-          container_user: 1000 
