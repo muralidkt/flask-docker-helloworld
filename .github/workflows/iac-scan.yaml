@@ -12,7 +12,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - run: pip install requests,checkov
+      - run: pip install requests
+      - run: pip install checkov
       - run: checkov --directory ./IaC/ -o json --output-file-path ./ --quiet
       - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file results_json.json --scanner "Checkov Scan"
    
