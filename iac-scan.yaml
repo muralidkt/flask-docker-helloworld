@@ -1,8 +1,8 @@
-name: tfsec
+name: IaC Scan
 on: [push]
 
 jobs:
-  tfsec:
+  IaCScan:
     name: tfsec sarif report
     runs-on: ubuntu-latest
 
