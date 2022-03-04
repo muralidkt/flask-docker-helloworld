@@ -21,10 +21,11 @@ jobs:
           unzip dependency-check-7.0.0-release.zip
           ./dependency-check/bin/dependency-check.sh -f JSON -s .
 
-      - name: Upload Scan Result
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+
+      - name: Upload Scan Result
         run: |
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
