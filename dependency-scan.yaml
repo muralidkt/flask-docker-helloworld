@@ -19,7 +19,7 @@ jobs:
         run: | 
           curl -sL -O https://github.com/jeremylong/DependencyCheck/releases/download/v7.0.0/dependency-check-7.0.0-release.zip
           unzip dependency-check-7.0.0-release.zip
-          ./dependency-check/bin/dependency-check.sh -f JSON -s .
+          ./dependency-check/bin/dependency-check.sh -f XML -s .
 
       - name: Setup python
         uses: actions/setup-python@v2
@@ -31,5 +31,5 @@ jobs:
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
             pip install requests
-            python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file dependency-check-report.json  --scanner "Dependency Check Scan"
+            python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file dependency-check-report.xml  --scanner "Dependency Check Scan"
    

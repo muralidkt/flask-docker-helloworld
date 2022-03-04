@@ -1,29 +1,28 @@
-name: IaC Scan
+name: IaC Scan - TFScan
 on: [push]
 jobs:
   IaCScan:
-    name: tfsec sarif report
+    name: IaC Scan
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone repo
+      - name: Clone the repo
         uses: actions/checkout@master
 
-      - name: tfsec
+      - name: Scan the Infrastructure code
         uses: tfsec/tfsec-sarif-action@master
         with:
           sarif_file: tfsec.sarif         
-
-      - name: Downaload the scripts
-        run: |
-          curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
-          curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
-        
-      - name: Upload Scan Result
+          
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - run: pip install requests
-      - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file tfsec.sarif  --scanner "SARIF"
-   
+
+      - name: Uplaod Scan Result
+      - run: |
+            curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
+            curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
+            pip install requests
+            python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file tfsec.sarif  --scanner "SARIF"
       
