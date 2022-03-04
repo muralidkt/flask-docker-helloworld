@@ -29,7 +29,6 @@ jobs:
 
       - name: Upload Scan Result
         run: |
-            ls -ltr
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
             pip install requests
