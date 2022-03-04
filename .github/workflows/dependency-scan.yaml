@@ -21,6 +21,7 @@ jobs:
           unzip dependency-check-7.0.0-release.zip
           ./dependency-check/bin/dependency-check.sh -f JSON -s .
 
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
