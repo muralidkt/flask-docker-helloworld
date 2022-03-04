@@ -1,18 +1,19 @@
-name: IaC Scan - Checkov  
+name: "Container-scan - Trivy"
 on: [push]
 jobs:
-  checkov-job:
-    runs-on: ubuntu-latest
-    name: checkov-action
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
+      - name: Upload the result
+        uses: actions/setup-python@v2
         with:
-          directory: IaC/
-          framework: terraform 
-          output_format: json 
-          download_external_modules: true 
+          python-version: '3.x'
+      - run: pip install requests,checkov
+      - run: checkov --directory ./IaC/ -o json --output-file-path ./ --quiet
+      - run: python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token 1ade1e0980c87b2cf8aa44e8ab5031c6622123c7 --engagement 19 --user admin --product_name producti-1 --file results_json.json --scanner "Checkov Scan"
+   
+      
