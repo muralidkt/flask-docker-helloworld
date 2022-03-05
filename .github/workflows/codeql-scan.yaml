@@ -1,15 +1,9 @@
 
-name: "Code Scanning - Action"
+name: "Code Scan - CodeQL"
 on: [push]
 jobs:
-  CodeQL-Build:
+  CodeScan:
     runs-on: ubuntu-latest
-
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

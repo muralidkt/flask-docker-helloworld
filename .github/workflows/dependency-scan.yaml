@@ -12,7 +12,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
+          distribution: 'temurin' 
           java-version: '17'
 
       - name: Scan the repo
@@ -20,7 +20,6 @@ jobs:
           curl -sL -O https://github.com/jeremylong/DependencyCheck/releases/download/v7.0.0/dependency-check-7.0.0-release.zip
           unzip dependency-check-7.0.0-release.zip
           ./dependency-check/bin/dependency-check.sh -f XML -s .
-
 
       - name: Setup python
         uses: actions/setup-python@v2

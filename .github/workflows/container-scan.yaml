@@ -1,7 +1,7 @@
-name: "Container-scan - Trivy"
+name: "Container Scan - Trivy"
 on: [push]
 jobs:
-  build:
+  ContainerScan:
     name: Build
     runs-on: ubuntu-18.04
     steps:
