@@ -32,6 +32,6 @@ jobs:
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo_apiv2.py
             curl -sL -O https://raw.githubusercontent.com/muralidkt/defectdojo-client/main/test/defectdojo.py
             pip install requests
-            python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token ${{secrets.DD_API_TOKEN}} --engagement ${{secrets.DD_ENGAGEMENT}} --user ${{secrets.DD_USER}} --product_name ${{secrets.DD_PRODUCT_NAME} --file /home/runner/work/flask-docker-helloworld/results/python.sarif --scanner "SARIF"
+            python3 defectdojo.py --host https://defectdojo.shellctl.com --api_token ${{secrets.DD_API_TOKEN}} --engagement ${{secrets.DD_ENGAGEMENT}} --user ${{secrets.DD_USER}} --product_name ${{secrets.DD_PRODUCT_NAME}} --file /home/runner/work/flask-docker-helloworld/results/python.sarif --scanner "SARIF"
    
       
